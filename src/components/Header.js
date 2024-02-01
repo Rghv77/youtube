@@ -10,7 +10,7 @@ const Header=()=>{
     const dispatch=useDispatch();
     const [searchQuery,setSearchQuery]=useState("");
     const [searchSuggestions,setSearchSuggestions]=useState([]);
-    const [showSuggestions,setShowSuggestions]=useState(true);
+    const [showSuggestions,setShowSuggestions]=useState(false);
     const getSearchSuggestions=async()=>{
         const data=await fetch(YOUTUBE_SEARCH_API+searchQuery);
         const json=await data.json();        
@@ -47,8 +47,8 @@ const Header=()=>{
             <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
             🔍
           </button> 
-          {showSuggestions && (
-          <div className="fixed bg-white py-2 px-2 w-[34rem] shadow-lg rounded-lg border border-gray-100">
+          {showSuggestions && searchSuggestions?.length>0&& (
+          <div className="fixed bg-white py-2 px-2 w-[31rem] shadow-lg rounded-lg border border-gray-100">
             <ul>
               {searchSuggestions?.map((s) => (
                 <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
