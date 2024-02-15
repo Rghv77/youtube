@@ -1,42 +1,149 @@
-import React from "react";
+
+import { IoHomeOutline } from "react-icons/io5";
+import { SiYoutubeshorts } from "react-icons/si";
+import { MdSubscriptions } from "react-icons/md";
+import { FaHistory } from "react-icons/fa";
+import { AiFillFire } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
+const sidebar_items=[
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+    {
+    icon:<IoHomeOutline />,
+    name:"Home",
+},
+    {
+    icon:<SiYoutubeshorts />,
+    name:"Shorts",
+},
+    {
+    icon:<MdSubscriptions />,
+    name:"Subscriptions",
+},
+    {
+    icon:<FaHistory />,
+    name:"History",
+},
+    {
+    icon:<AiFillFire />,
+    name:"Trending",
+},
+]
 const Sidebar = () => {
-  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-
-  // Early Return pattern
-  if (!isMenuOpen) return null;
-  
-
+    const isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
   return (
-    <div className="p-5 shadow-lg w-48">
-      <ul>
-        <li>
-          Home
-        </li>
-        <li>
-        Demo
-        </li>
-        <li> Shorts</li>
-        <li> Videos</li>
-        <li> Live</li>
-      </ul>
-      <h1 className="font-bold pt-5">Subscriptions</h1>
-      <ul>
-        <li> Music</li>
-        <li> Sports</li>
-        <li> Gaming</li>
-        <li> Movies</li>
-      </ul>
-      <h1 className="font-bold pt-5">Watch Later</h1>
-      <ul>
-        <li> Music</li>
-        <li> Sports</li>
-        <li> Gaming</li>
-        <li> Movies</li>
-      </ul>
+    
+    <div className=' h-[83vh] overflow-y-scroll overflow-x-hidden'>
+        {
+            sidebar_items.map((item,index)=>{
+             return  <div className='flex ml-4 items-center mb-4'>
+                
+                <div className='mr-8'>{item.icon}</div>
+                {isMenuOpen&&<div className="w-[7rem]">{item.name}</div>}
+                </div>
+            })
+        } 
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

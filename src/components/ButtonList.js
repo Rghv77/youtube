@@ -1,19 +1,15 @@
-import Button from "./Button";
-
-const ButtonList=()=>{
-    return <>
-    <div className="flex my-4">
-        <Button name="New To You"/>
-        <Button name="Sports"/>
-        <Button name="Education"/>
-        <Button name="Entertainment"/>
-        <Button name="News"/>
-        <Button name="Gaming"/>
-        <Button name="Subscriptions"/>
-        <Button name="Bigg Boss"/>
-        <Button name="Coding"/>
-
+import React from 'react'
+const Buttons=["All","Education","Technology","Jobs","Coding","Vlogs","Songs","Movies","Buisness","Motivation","Health"]
+const ButtonList = () => {
+  return (
+    <div>
+      {
+        Buttons.map((buttonname,index)=>{
+          return <button className='bg-slate-300 rounded-lg h-10 w-24 mr-2 font-bold'>{buttonname}</button>
+        })
+      }
     </div>
-    </>
+  )
 }
-export default ButtonList;
+
+export default ButtonList

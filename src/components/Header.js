@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import { Hamburger_icon, YOUTUBE_SEARCH_API, website_logo } from "../utils/constants";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { chacheResults } from "../utils/searchSlice";
+import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { logo, user_logo } from "../utils/constants";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { MdOutlineVideoCall } from "react-icons/md";
+
 
 
 const Header=()=>{
+
   const searchCache=useSelector((store)=>store.search);
     const dispatch=useDispatch();
     const [searchQuery,setSearchQuery]=useState("");
@@ -34,38 +41,38 @@ const Header=()=>{
         dispatch(toggleMenu());
     }
     return <>
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
-        <div className=" flex col-span-1">
-        <img src={Hamburger_icon} alt="menu" className="h-8 rounded-full cursor-pointer" onClick={toggleMenuHandler}/>
-        <img src={website_logo} alt="logo" className="h-8 mx-2"/>
+    <div className="flex justify-between items-center bg-slate-300">
+        <div className="flex items-center justify-between">
+        <button  className="mx-4" onClick={toggleMenuHandler}> <GiHamburgerMenu /> </button>
+        <img src={logo} alt="company_logo" className=" w-32 h-24"/>
         </div>
-        <div className="col-span-10 px-10">
-            <input value={searchQuery} placeholder="Search your videos" onChange={(e)=>{setSearchQuery(e.target.value)}}
+        <div className="">
+            <input value={searchQuery} className=" border-2 border-slate-500 rounded-l-full w-[40vw] h-10 outline-none" placeholder="Search your videos" onChange={(e)=>{setSearchQuery(e.target.value)}}
             onFocus={()=>{setShowSuggestions(true)}}
-            onBlur={()=>{setShowSuggestions(false)}}
-             className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full"/>
-            <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
+            onBlur={()=>{setShowSuggestions(false)}}/>
+            <button className="bg-slate-500 rounded-r-full h-10 w-20">
             🔍
           </button> 
           {showSuggestions && searchSuggestions?.length>0&& (
           <div className="fixed bg-white py-2 px-2 w-[31rem] shadow-lg rounded-lg border border-gray-100">
-            <ul>
-              {searchSuggestions?.map((s) => (
-                <li key={s} className="py-2 px-3 shadow-sm hover:bg-gray-100">
+            <div>
+              {searchSuggestions?.map((s,index) => 
+                 { return <Link to={`/searchvideos/${encodeURIComponent(s)}`} key={index}>
+                <div className="py-2 px-3 shadow-sm hover:bg-gray-100">
                   🔍 {s}
-                </li>
-              ))}
-            </ul>
+                </div>
+                </Link>}
+               
+              )}
+            </div>
           </div>
         )}
         </div>
-        <div className="col-span-1">
-        <img
-          className="h-8"
-          alt="user"
-          src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-        />
-      </div>
+        <div className="flex justify-between items-center">
+        <IoNotificationsOutline size={25} />
+        <MdOutlineVideoCall className="ml-4" size={25} />
+        <img src={user_logo} alt="user_logo" className="w-10 h-10 mx-4"/>
+        </div>
 
     </div>
     </>
