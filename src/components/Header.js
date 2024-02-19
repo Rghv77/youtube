@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../utils/appSlice";
+import { toggleMenu, toggleTheme } from "../utils/appSlice";
 import { chacheResults } from "../utils/searchSlice";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { logo, user_logo } from "../utils/constants";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineVideoCall } from "react-icons/md";
+import { MdNightlight } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 
 
 
 const Header=()=>{
-
+  const theme=useSelector((store)=>store.app.Theme);
   const searchCache=useSelector((store)=>store.search);
     const dispatch=useDispatch();
     const [searchQuery,setSearchQuery]=useState("");
@@ -41,16 +43,18 @@ const Header=()=>{
         dispatch(toggleMenu());
     }
     return <>
-    <div className="flex justify-between items-center bg-slate-300">
+    <div className="flex justify-between items-center  h-[5rem]">
         <div className="flex items-center justify-between">
         <button  className="mx-4" onClick={toggleMenuHandler}> <GiHamburgerMenu /> </button>
-        <img src={logo} alt="company_logo" className=" w-32 h-24"/>
+        <Link to="/"> <button className=" w-32  font-bold font-serif text-red-700 text-3xl shadow-sm shadow-black bg-gradient-to-tr from bg-yellow-200 rounded-md ml-4 ">AllTube</button></Link>
+        {/* <img src={logo} alt="company_logo" className=" w-32 h-24"/> */}
+        
         </div>
         <div className="">
-            <input value={searchQuery} className=" border-2 border-slate-500 rounded-l-full w-[40vw] h-10 outline-none" placeholder="Search your videos" onChange={(e)=>{setSearchQuery(e.target.value)}}
+            <input value={searchQuery} className=" border border-slate-500 rounded-l-full w-[40vw] h-10 outline-none" placeholder="Search your videos" onChange={(e)=>{setSearchQuery(e.target.value)}}
             onFocus={()=>{setShowSuggestions(true)}}
             onBlur={()=>{setShowSuggestions(false)}}/>
-            <button className="bg-slate-500 rounded-r-full h-10 w-20">
+            <button className="border border-slate-500 bg-slate-200 rounded-r-full h-10 w-16">
             🔍
           </button> 
           {showSuggestions && searchSuggestions?.length>0&& (
@@ -69,6 +73,10 @@ const Header=()=>{
         )}
         </div>
         <div className="flex justify-between items-center">
+        
+        {theme?<MdNightlight size={25} className="mr-8 cursor-pointer" onClick={()=>{dispatch(toggleTheme())}} />:<MdOutlineLightMode size={25} className="mr-8 cursor-pointer" onClick={()=>{dispatch(toggleTheme())}}/>}
+
+          
         <IoNotificationsOutline size={25} />
         <MdOutlineVideoCall className="ml-4" size={25} />
         <img src={user_logo} alt="user_logo" className="w-10 h-10 mx-4"/>

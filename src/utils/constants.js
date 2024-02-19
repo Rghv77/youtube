@@ -5,7 +5,7 @@ export const website_logo="https://img.freepik.com/premium-vector/red-youtube-lo
 export const logo="https://download.logo.wine/logo/YouTube/YouTube-Logo.wine.png";
 export const user_logo="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";
 
-const GOOGLE_API_KEY = "AIzaSyBorO3X_j5iVl6iOBA1Lhq8qJ2qpEfUU2k";
+export const GOOGLE_API_KEY = "AIzaSyBorO3X_j5iVl6iOBA1Lhq8qJ2qpEfUU2k";
 
 export const OFFSET_LIVE_CHAT = 25;
 

@@ -4,7 +4,8 @@ const appSlice=createSlice({
     name:"app",
     initialState:{
         isMenuOpen:true, 
-        ButtonName:"",       
+        ButtonName:"All",    
+        Theme:true, //true means light   
     },
     reducers:{
         toggleMenu:(state)=>{
@@ -14,12 +15,13 @@ const appSlice=createSlice({
             state.isMenuOpen=false;
         },
         toggleButton:(state,action)=>{
-            if(state.ButtonName===action.payload) state.ButtonName="";
-            else state.ButtonName=action.payload;
-            
+             state.ButtonName=action.payload;            
+        },
+        toggleTheme:(state)=>{
+            state.Theme=!state.Theme;
         }
     },
 });
 
-export const {toggleMenu,closeMenu,toggleButton} = appSlice.actions;
+export const {toggleMenu,closeMenu,toggleButton,toggleTheme} = appSlice.actions;
 export default appSlice.reducer;

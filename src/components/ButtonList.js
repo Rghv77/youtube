@@ -1,11 +1,13 @@
 import React from 'react'
-const Buttons=["All","Education","Technology","Jobs","Coding","Vlogs","Songs","Movies","Buisness","Motivation","Health"]
+import Button from './Button'
+
+const Buttons=["All","Education","Technology","Jobs","Coding","Vlogs","Songs","Movies","Buisness","Motivation","Health","Comedy","Thriller","Horror"]
 const ButtonList = () => {
   return (
-    <div>
+    <div className='flex overflow-x-scroll  justify-between w-[97%]'>
       {
         Buttons.map((buttonname,index)=>{
-          return <button className='bg-slate-300 rounded-lg h-10 w-24 mr-2 font-bold'>{buttonname}</button>
+          return <Button name={buttonname} key={buttonname}/>
         })
       }
     </div>

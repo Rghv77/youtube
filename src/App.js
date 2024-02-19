@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchVideo from "./components/WatchVideo"
 import SearchVideos from "./components/SearchVideos";
-import Buttonvideo from "./components/Buttonvideo";
+
 
 const App=()=>{
     const appRouter=createBrowserRouter([{
@@ -20,14 +20,11 @@ const App=()=>{
                 path:"/watch",
                 element:<WatchVideo/>
             },
-            {
-                path:"/searchvideos/1",
-                element:<SearchVideos/>
-            },
-            {
-                path:"/button/:id",
-                element:<Buttonvideo/>
-            },
+            // {
+            //     path:"/searchvideos/1",
+            //     element:<SearchVideos/>
+            // },
+           
         ],
     }])
     return <>

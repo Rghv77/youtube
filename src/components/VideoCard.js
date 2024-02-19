@@ -1,13 +1,28 @@
+import { useEffect, useState } from "react";
+import { GOOGLE_API_KEY } from "../utils/constants";
+import { useSelector } from "react-redux";
+
 const VideoCard=({info})=>{
-    const {snippet,statistics}=info;
-    const {channelTitle,title,thumbnails}=snippet
+    const buttonname=useSelector((store)=>store.app.ButtonName);
+    const isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
+    const [yticon,setyticon]=useState("");
+    const {snippet}=info;
+    const {channelTitle,title,thumbnails,channelId}=snippet;
+    const getChannelDetail=async()=>{
+        const data=await fetch("https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+channelId+"&key="+GOOGLE_API_KEY);
+        const json=await data.json();
+        setyticon(json.items[0].snippet.thumbnails.high.url)
+    }
+    useEffect(()=>{
+        console.log("icon");
+        getChannelDetail();
+    },[buttonname])
     return <>
-    <div className=" m-2 w-[24rem]  shadow-lg bg-slate-200 ">
-        <img src={thumbnails.medium.url} className="rounded-lg w-full" alt="thumnail"/>
+    <div className={"mt-8 mb-4 "+(!isMenuOpen?"w-[24rem]":"w-[21rem]")}>
+        <img src={thumbnails.medium.url} className="rounded-lg w-full" alt="thumbnail"/>
         <ul>
-            <li className="font-bold py-2 overflow-hidden h-20">{title}</li>
-            <li>{channelTitle}</li>
-            <li>{statistics.viewCount} views</li> 
+            <li className="font-bold overflow-hidden flex mt-1"><img src={thumbnails.high.url} alt="user_logo" className="w-10 h-10 mr-4 rounded-full"/><div>{title}</div></li>
+            <li>{channelTitle}</li> 
         </ul>        
     </div>
     </>

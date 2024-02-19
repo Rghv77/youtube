@@ -16,7 +16,7 @@ const WatchPage = () => {
     const data=await fetch(API);
     const json=await data.json();
     setcomments(json.items);
-    // console.log(json.items);
+    console.log(json.items);
 
   }
   useEffect(() => {
@@ -24,11 +24,11 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="flex flex-col w-full">
-      <div className="px-5 flex w-full">
+    <div className="flex flex-col w-full h-screen overflow-y-scroll">
+      <div className="px-5 grid grid-cols-2 gap-80 w-full">
         <div className="">
           <iframe
-            width="800"
+            width="750"
             height="500"
             className="rounded-lg"
             src={"https://www.youtube.com/embed/" + searchParams.get("v")}

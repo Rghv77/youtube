@@ -1,21 +1,19 @@
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { toggleButton } from "../utils/appSlice";
 import { searchHandler } from "../utils/constants";
-
+import { useState } from "react";
 
 const Button = ({ name }) => {
-  const dispatch=useDispatch();
-  const handleButtonclick=async(name)=>{
-    dispatch(toggleButton(name));
-    const API=searchHandler(name);
-    const data=await fetch(API);
-    const json=await data.json();
-    console.log(json);
+  const buttonname=useSelector((store)=>store.app.ButtonName);
+  const dispatch=useDispatch(); 
+   console.log(buttonname);
+   
+  const handleButtonClicked=(name)=>{
+    dispatch(toggleButton(name));    
   }
   return (
     <div>
-    <button className="px-5 py-2 mx-2 bg-gray-200 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-yellow-500 " onClick={()=>{handleButtonclick(name)}}>{name}</button>
+    <button className={"px-5 py-2 m-2 rounded-lg font-semibold "+(buttonname===name?"bg-black text-white":"bg-slate-300")} onClick={()=>handleButtonClicked(name)}>{name}</button>
     </div>
   );
 };
