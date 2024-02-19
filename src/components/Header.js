@@ -10,6 +10,8 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineVideoCall } from "react-icons/md";
 import { MdNightlight } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
+import { FaRegUserCircle } from "react-icons/fa";
+
 
 
 
@@ -43,9 +45,9 @@ const Header=()=>{
         dispatch(toggleMenu());
     }
     return <>
-    <div className="flex justify-between items-center  h-[5rem]">
+    <div className={"flex justify-between items-center  h-[5rem]"}>
         <div className="flex items-center justify-between">
-        <button  className="mx-4" onClick={toggleMenuHandler}> <GiHamburgerMenu /> </button>
+        <button  className={"mx-4"+(!theme?" text-white":" text-black")} onClick={toggleMenuHandler}> <GiHamburgerMenu /> </button>
         <Link to="/"> <button className=" w-32  font-bold font-serif text-red-700 text-3xl shadow-sm shadow-black bg-gradient-to-tr from bg-yellow-200 rounded-md ml-4 ">AllTube</button></Link>
         {/* <img src={logo} alt="company_logo" className=" w-32 h-24"/> */}
         
@@ -72,14 +74,15 @@ const Header=()=>{
           </div>
         )}
         </div>
-        <div className="flex justify-between items-center">
+        <div className={"flex justify-between items-center"+(!theme?" text-white":" text-black")}>
         
         {theme?<MdNightlight size={25} className="mr-8 cursor-pointer" onClick={()=>{dispatch(toggleTheme())}} />:<MdOutlineLightMode size={25} className="mr-8 cursor-pointer" onClick={()=>{dispatch(toggleTheme())}}/>}
 
           
         <IoNotificationsOutline size={25} />
         <MdOutlineVideoCall className="ml-4" size={25} />
-        <img src={user_logo} alt="user_logo" className="w-10 h-10 mx-4"/>
+        <FaRegUserCircle className="mx-4" size={30} />
+
         </div>
 
     </div>

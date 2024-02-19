@@ -129,6 +129,7 @@ const sidebar_items=[
 },
 ]
 const Sidebar = () => {
+    const theme=useSelector((store)=>store.app.Theme);
     const isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
   return (
     
@@ -137,8 +138,8 @@ const Sidebar = () => {
             sidebar_items.map((item,index)=>{
              return  <div className='flex ml-4 items-center mb-4'>
                 
-                <div className='mr-8'>{item.icon}</div>
-                {isMenuOpen&&<div className="w-[7rem]">{item.name}</div>}
+                <div className={'mr-8 '+(!theme?"text-white":"text-black")}>{item.icon}</div>
+                {isMenuOpen&&<div className={"w-[7rem] "+(!theme?"text-white":"text-black")}>{item.name}</div>}
                 </div>
             })
         } 
