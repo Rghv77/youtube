@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { closeMenu } from "../utils/appSlice";
 import CommentsContainer from "./CommentsContainer";
@@ -7,6 +7,7 @@ import LiveChat from "./LiveChat";
 import { related, commentHandler } from "../utils/constants";
 
 const WatchPage = () => {
+  const isMenuOpen=useSelector((store)=>store.app.isMenuOpen);
   const [searchParams] = useSearchParams();
   const [comments,setcomments]=useState([]);
 
@@ -38,7 +39,7 @@ const WatchPage = () => {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="w-full">
+        <div className={isMenuOpen?"w-full ml-12":"w-full"}>
           <LiveChat />
 
         </div>

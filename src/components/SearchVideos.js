@@ -1,4 +1,5 @@
 const SearchVideos=()=>{
+    console.log("routesearch")
     return <>Videos</>
 }
 

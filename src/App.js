@@ -20,10 +20,10 @@ const App=()=>{
                 path:"/watch",
                 element:<WatchVideo/>
             },
-            // {
-            //     path:"/searchvideos/1",
-            //     element:<SearchVideos/>
-            // },
+            {
+                path:"/searchvideos/:id",
+                element:<SearchVideos/>
+            },
            
         ],
     }])

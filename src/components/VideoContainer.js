@@ -25,7 +25,7 @@ const VideoContainer=()=>{
         const data=await fetch(API);
         const json=await data.json();
         console.log("search",buttonname);
-        console.log(json);
+        console.log(json.items);
         setVideos(json.items);
     }
     
@@ -38,7 +38,7 @@ const VideoContainer=()=>{
      <div className="grid grid-cols-3 gap-3 overflow-y-scroll h-[77vh] mt-2">
         {/* {videos&&videos[0]&&<AdVideoCard info={videos[0]}/>} */}
         {videos?.map((video)=>{
-            return <Link to={"/watch?v="+video.id} key={video.id}> <VideoCard info={video}/></Link>
+            return <Link to={"/watch?v="+video.id.videoId} key={video.id}> <VideoCard info={video}/></Link>
         })}
         {videos&&videos[0]&&<AdVideoCard info={videos[0]}/>}
      </div>

@@ -60,10 +60,10 @@ const Header=()=>{
             🔍
           </button> 
           {showSuggestions && searchSuggestions?.length>0&& (
-          <div className="fixed bg-white py-2 px-2 w-[31rem] shadow-lg rounded-lg border border-gray-100">
+          <div className="fixed bg-white py-2 px-2 w-[40vw] shadow-lg rounded-lg border border-gray-100">
             <div>
               {searchSuggestions?.map((s,index) => 
-                 { return <Link to={`/searchvideos/${encodeURIComponent(s)}`} key={index}>
+                 { return <Link to={`/searchvideos/`+index} key={index}>
                 <div className="py-2 px-3 shadow-sm hover:bg-gray-100">
                   🔍 {s}
                 </div>
